@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "tymon/jwt-auth": "*"
+        "tymon/jwt-auth": "*",
+        "intervention/image": "^2.6"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -27,7 +28,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/Helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

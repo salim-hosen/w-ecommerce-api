@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\User\MeController;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function(){
-    return "HELLO";
-});
+
 
 // Routes for guests only
 Route::group(['middleware' => ['guest:api']], function(){
@@ -44,4 +44,12 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::post('logout', [LoginController::class, 'logout']); // api user logout
     Route::get('me', [MeController::class, 'getMe']);
 
+    Route::resource("products", ProductController::class)->except(["index", "show"]);
+
 });
+
+
+// Public Routes
+
+Route::get("products", [ProductController::class, 'index'])->name("products.index");
+Route::get("products/{slug}", [ProductController::class, 'show'])->name("products.show");
