@@ -44,6 +44,13 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'buyer_id');
+    }
+
+
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmail);

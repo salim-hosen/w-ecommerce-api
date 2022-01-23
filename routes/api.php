@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\User\MeController;
 use App\Models\Product;
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['auth:api']], function(){
     Route::get('me', [MeController::class, 'getMe']);
 
     Route::resource("products", ProductController::class)->except(["index", "show"]);
+    Route::resource("orders", OrderController::class);
 
 });
 
